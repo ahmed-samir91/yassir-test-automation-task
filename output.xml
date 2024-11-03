@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.9.0 on win32)" generated="2024-11-03T18:33:03.820462" rpa="false" schemaversion="5">
+<suite id="s1" name="Api Tests" source="D:\Yassir\AutomationTests\Tests\api_tests.robot">
+<test id="s1-t1" name="Get Public APIs List Test" line="6">
+<kw name="Get Public APIs" owner="api_keywords">
+<kw name="Create API Session" owner="api_keywords">
+<kw name="Create Session">
+<msg time="2024-11-03T18:33:03.860020" level="FAIL">No keyword with name 'Create Session' found. Did you mean:
+    api_keywords.Create API Session</msg>
+<arg>${session_name}</arg>
+<arg>${BASE_URL}</arg>
+<status status="FAIL" start="2024-11-03T18:33:03.860020" elapsed="0.000000">No keyword with name 'Create Session' found. Did you mean:
+    api_keywords.Create API Session</status>
+</kw>
+<arg>public_apis</arg>
+<status status="FAIL" start="2024-11-03T18:33:03.859021" elapsed="0.002000">No keyword with name 'Create Session' found. Did you mean:
+    api_keywords.Create API Session</status>
+</kw>
+<kw name="GET">
+<var>${response}</var>
+<arg>/entries</arg>
+<status status="NOT RUN" start="2024-11-03T18:33:03.861021" elapsed="0.000000"/>
+</kw>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<arg>${response_body}</arg>
+<arg>${response.json()}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="NOT RUN" start="2024-11-03T18:33:03.861021" elapsed="0.000000"/>
+</kw>
+<status status="FAIL" start="2024-11-03T18:33:03.859021" elapsed="0.002000">No keyword with name 'Create Session' found. Did you mean:
+    api_keywords.Create API Session</status>
+</kw>
+<kw name="Status Should Be" owner="api_keywords">
+<arg>200</arg>
+<status status="NOT RUN" start="2024-11-03T18:33:03.861021" elapsed="0.000000"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${response_body}</arg>
+<arg>"API Name"</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" start="2024-11-03T18:33:03.862020" elapsed="0.000000"/>
+</kw>
+<doc>Verify that we can get a list of public APIs</doc>
+<status status="FAIL" start="2024-11-03T18:33:03.858021" elapsed="0.003999">No keyword with name 'Create Session' found. Did you mean:
+    api_keywords.Create API Session</status>
+</test>
+<test id="s1-t2" name="Get API Details Test" line="12">
+<kw name="Get API Details With Auth" owner="api_keywords">
+<msg time="2024-11-03T18:33:03.864021" level="FAIL">Variable '${api_id}' not found.</msg>
+<arg>${api_id}</arg>
+<arg>${auth_token}</arg>
+<status status="FAIL" start="2024-11-03T18:33:03.863021" elapsed="0.001000">Variable '${api_id}' not found.</status>
+</kw>
+<kw name="Status Should Be" owner="api_keywords">
+<arg>200</arg>
+<status status="NOT RUN" start="2024-11-03T18:33:03.864021" elapsed="0.000000"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${response_body}</arg>
+<arg>"Expected Detail"</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" start="2024-11-03T18:33:03.864021" elapsed="0.000000"/>
+</kw>
+<doc>Verify that we can get API details with valid authorization</doc>
+<status status="FAIL" start="2024-11-03T18:33:03.863021" elapsed="0.001999">Variable '${api_id}' not found.</status>
+</test>
+<status status="FAIL" start="2024-11-03T18:33:03.820462" elapsed="0.044558"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="2" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="2" skip="0" id="s1" name="Api Tests">Api Tests</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2024-11-03T18:33:03.850013" level="ERROR">Error in file 'D:\Yassir\AutomationTests\Tests\api_tests.robot' on line 2: Importing library 'RequestsLibrary' failed: ModuleNotFoundError: No module named 'RequestsLibrary'
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  D:\Yassir\ENV\Scripts\robot.exe
+  C:\Python39\python39.zip
+  C:\Python39\DLLs
+  C:\Python39\lib
+  C:\Python39
+  d:\yassir\env
+  d:\yassir\env\lib\site-packages</msg>
+<msg time="2024-11-03T18:33:03.855247" level="ERROR">Error in file 'D:\Yassir\AutomationTests\Keywords\api_keywords.robot' on line 2: Importing library 'RequestsLibrary' failed: ModuleNotFoundError: No module named 'RequestsLibrary'
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  D:\Yassir\ENV\Scripts\robot.exe
+  C:\Python39\python39.zip
+  C:\Python39\DLLs
+  C:\Python39\lib
+  C:\Python39
+  d:\yassir\env
+  d:\yassir\env\lib\site-packages</msg>
+</errors>
+</robot>
