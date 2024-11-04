@@ -19,13 +19,6 @@ jobs:
         run: |
           pip install -r ./requirements.txt
 
-      - uses: browser-actions/setup-chrome@v1
-      - run: chrome --version
-  
-      - name: Verify Google Chrome Installation
-        run: |
-            google-chrome --version
-  
       - name: setup-chromedriver
         uses: nanasess/setup-chromedriver@v2.2.2
             
