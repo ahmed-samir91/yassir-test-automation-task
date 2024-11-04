@@ -25,4 +25,4 @@ jobs:
       
       - name: Run Robot Framework Tests
         run: |
-          robot Tests/web_tests.robot
+          robot ./AutomationTestsTests/web_tests.robot
