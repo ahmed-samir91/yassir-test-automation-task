@@ -25,4 +25,4 @@ jobs:
       
       - name: Run Robot Framework Tests
         run: |
-          robot D:\\Yassir\\AutomationTests\\Tests\\web_tests.robot
+          robot Tests/web_tests.robot
