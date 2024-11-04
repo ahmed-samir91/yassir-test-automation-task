@@ -18,10 +18,17 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r ./requirements.txt
-
-      - name: List files
+      
+      - name: Install Google Chrome
         run: |
-            ls -R    
+            wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+            echo "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
+            sudo apt-get update
+            sudo apt-get install -y google-chrome-stable
+  
+      - name: Verify Chrome Installation
+        run: |
+            google-chrome --version    
       
       - name: Run Robot Framework Tests
         run: |
