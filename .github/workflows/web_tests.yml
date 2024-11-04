@@ -21,11 +21,10 @@ jobs:
       
       - name: Install Google Chrome
         run: |
-            CHROME_VERSION=" 130.0.6723.92"
-            wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-            echo "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
-            sudo apt-get update
-            sudo apt-get install -y google-chrome-stable=${CHROME_VERSION}-1
+            CHROME_VERSION="130.0.6823.1"
+            CHROME_DEB="google-chrome-stable_${CHROME_VERSION}-1_amd64.deb"
+            wget "https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/${CHROME_DEB}"
+            sudo dpkg -i ${CHROME_DEB} || sudo apt-get install -f 
   
       - name: Verify Google Chrome Installation
         run: |
