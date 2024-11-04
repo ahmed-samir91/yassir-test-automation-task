@@ -1,0 +1,5 @@
+robotframework
+robotframework-requests
+robotframework-jsonlibrary
+robotframework-seleniumlibrary
+selenium
