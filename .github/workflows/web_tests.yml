@@ -18,26 +18,17 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r ./requirements.txt
-      
-      - name: Install Google Chrome
-        run: |
-            CHROME_VERSION="130.0.6823.1"
-            CHROME_DEB="google-chrome-stable_${CHROME_VERSION}-1_amd64.deb"
-            wget "https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/${CHROME_DEB}"
-            sudo dpkg -i ${CHROME_DEB} || sudo apt-get install -f 
+
+      - uses: browser-actions/setup-chrome@v1
+      - run: chrome --version
   
       - name: Verify Google Chrome Installation
         run: |
             google-chrome --version
   
-      - name: Install ChromeDriver
-        run: |
-            CHROME_DRIVER_VERSION="130.0.6723.91"  
-            echo "Using ChromeDriver version: $CHROME_DRIVER_VERSION"
-            wget "https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip"
-            unzip chromedriver_linux64.zip
-            sudo mv chromedriver /usr/local/bin/
-            sudo chmod +x /usr/local/bin/chromedriver
+      - name: setup-chromedriver
+        uses: nanasess/setup-chromedriver@v2.2.2
+            
   
       - name: ChromeDriver Installation
         run: |
