@@ -21,23 +21,27 @@ jobs:
       
       - name: Install Google Chrome
         run: |
+            CHROME_VERSION="130.0.6823.1"
             wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
             echo "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
             sudo apt-get update
-            sudo apt-get install -y google-chrome-stable
+            sudo apt-get install -y google-chrome-stable=${CHROME_VERSION}-1
+  
+      - name: Verify Google Chrome Installation
+        run: |
+            google-chrome --version
   
       - name: Install ChromeDriver
         run: |
-          CHROME_VERSION=$(google-chrome --version | grep -oP '[\d]+' | head -n1)
-          CHROME_DRIVER_VERSION="130.0.6723.91"
-          wget https://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VERSION}/chromedriver_linux64.zip
-          unzip chromedriver_linux64.zip
-          sudo mv chromedriver /usr/local/bin/
-          sudo chmod +x /usr/local/bin/chromedriver
+            CHROME_DRIVER_VERSION="130.0.6823.0"  # Pin to the corresponding ChromeDriver version
+            echo "Using ChromeDriver version: $CHROME_DRIVER_VERSION"
+            wget "https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip"
+            unzip chromedriver_linux64.zip
+            sudo mv chromedriver /usr/local/bin/
+            sudo chmod +x /usr/local/bin/chromedriver
   
-      - name: Verify Chrome and ChromeDriver Installation
+      - name: ChromeDriver Installation
         run: |
-            google-chrome --version
             chromedriver --version   
       
       - name: Run Robot Framework Tests
