@@ -1,16 +1,27 @@
 *** Settings ***
-Library           RequestsLibrary
-Resource        ../keywords/api_keywords.robot
+Library    RequestsLibrary
+Resource    ../keywords/api_keywords.robot
+
+*** Variables ***
+${BASE_URL}    https://api.thedogapi.com/v1
+
 
 *** Test Cases ***
-Get Public APIs List Test
-    [Documentation]    Verify that we can get a list of public APIs
-    Get Public APIs
-    Status Should Be    200
-    Should Contain    ${response_body}    "API Name"
 
-Get API Details Test
-    [Documentation]    Verify that we can get API details with valid authorization
-    Get API Details With Auth    ${api_id}    ${auth_token}
-    Status Should Be    200
-    Should Contain    ${response_body}    "Expected Detail"
+Get Random Dog Image
+    [Documentation]    Test the endpoint that returns a random dog image
+    Create Session    dog_api    ${BASE_URL}
+    ${response}=    GET On Session    dog_api   /images/search
+    Should Be Equal As Numbers    ${response.status_code}    200
+    Log    ${response.json()}
+    Should Contain    ${response.json()}.['url']    https://cdn2.thedogapi.com/images
+
+Get Dog Breeds
+    [Documentation]    Test the endpoint that retrieves all dog breeds
+    ${API_KEY}=     Load Environment Variables
+    Create Session    dog_api    ${BASE_URL}
+    ${headers}=    Create Dictionary    x-api-key=${API_KEY}
+    ${response}=    GET On Session    dog_api    /breeds    headers=${headers}
+    Should Be Equal As Numbers    ${response.status_code}    200
+    Log    ${response.json()}
+    Should Contain    ${response.json()}.['name']   Affenpinscher

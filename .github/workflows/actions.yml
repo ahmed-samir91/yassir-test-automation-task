@@ -27,6 +27,12 @@ jobs:
         run: |
             chromedriver --version   
       
-      - name: Run Robot Framework Tests
+      - name: Run Web Tests
         run: |
           robot  AutomationTests/Tests/web_tests.robot
+
+      - name: Run API Tests
+        env:
+          X_API_KEY: ${{secrets.X_API_KEY }}
+        run: |
+            robot  AutomationTests/Tests/api_tests.robot
