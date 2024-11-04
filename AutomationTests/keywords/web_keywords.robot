@@ -5,7 +5,7 @@ Resource    ../variables/web_vars.robot
 
 *** Keywords ***
 Open SauceDemo And Login
-    Open Browser    ${URL}    chrome
+    Open Browser    ${URL}    headlesschrome
     Maximize Browser Window
     Input Text    ${input_username}    ${USERNAME}
     Input Text    ${input_password}   ${PASSWORD}
